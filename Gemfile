@@ -29,3 +29,6 @@ group :development do
 end
 
 gem "rspec-rails", group: [:development, :test]
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
+end

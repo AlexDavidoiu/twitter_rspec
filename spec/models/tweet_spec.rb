@@ -1,17 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Tweet, type: :model do
-  # describe 'validations' do
-  #   it 'ensures content presence' do
-  #     tweet = Tweet.new(user: User.first).save
-  #     expect(tweet).to eq(false)
-  #   end
-  # end
+  describe 'validations' do
+    it { should validate_presence_of(:content) }
+  end
 
   describe 'associations' do
-    it 'should belong to user' do
-      tweet = Tweet.reflect_on_association(:user)
-      expect(tweet.macro).to eq(:belongs_to)
-    end
+    it { should belong_to(:user) }
+    it { should have_many(:likes) }
+    it { should have_many(:liking_users).through(:likes).source(:user) }
   end
 end
